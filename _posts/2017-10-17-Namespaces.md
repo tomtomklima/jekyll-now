@@ -19,7 +19,7 @@ S namespaces úzce pracují standardy PSR-0 (zastaralý) a [PSR-4](http://jakpsa
 
 # Použití
 
-Namespace musí být definovaný na vrchu PHP souboru, takže například jako
+Namespace musí být definovaný na vrchu PHP souboru, takže například jako:
 
 ```php
 <?php
@@ -29,7 +29,7 @@ namespace ApplicationOne;
 // code ...
 ```
 
-Takový soubor teď celý patří do namespacu pojemnovaného `ApplicationOne`. V rámci souboru je není možné zanořovat, lze ale mít více namespaces v jednou souboru, jako třeba
+Takový soubor teď celý patří do namespacu pojemnovaného `ApplicationOne`. V rámci souboru je není možné zanořovat, lze ale mít více namespaces v jednou souboru, jako třeba:
 
 ```php
 <?php
@@ -39,9 +39,20 @@ namespace ApplicationOne;
 
 namespace DifferentOne;
 // different stuff
+```
 
-namespace Database {
-	// another stuff with alternative syntax
+nebo:
+
+```php
+<?php
+
+//alternative syntax
+namespace ApplicationOne {
+	// stuff
+}
+
+namespace DifferentOne {
+	// different stuff
 }
 ```
 
@@ -54,15 +65,16 @@ Používat vnořené namespaces lze třeba takto:
 ```php
 <?php
 
-namespace ApplicationOne/Service;
-public function functionService() {
+namespace ApplicationOne\Service;
+
+function functionService() {
 	// service stuff
 }
 
-namespace ApplicationOne/Service/Database;
+namespace ApplicationOne\Service\Database;
 
-static class Connector {
-	static public functionStuff() {
+class Connector {
+	public static function functionStuff() {
 		// stuff
 	}
 }
@@ -70,16 +82,23 @@ static class Connector {
 
 ## Globální namespace
 
-Všechny třídy, funkce, proměnné a konstanty, které nemají daný namespace, jsou alokovány v **globálním namespace**. Ten je dostupný pomocí znaku zpětného lomítka - `\`. Opět se podívej na příklad:
+Všechny třídy, funkce, proměnné a konstanty, které nemají daný namespace, jsou alokovány v **globálním namespace**:
 
 ```php
 <?php
 
-functionOne() {
+// funkce v globálním namespace
+function functionOne() {
 	// stuff
 }
+```
 
-namespace ApplicationOne();
+Ten je dostupný pomocí znaku zpětného lomítka - `\`. Opět se podívej na příklad:
+
+```php
+<?php
+
+namespace ApplicationOne;
 
 // volání globálního namespace v pojmenovaném namespace
 \functionOne();
@@ -102,7 +121,7 @@ Pokud danou funkci nebo třídu potřebuješ často, je velmi nepraktické opiso
 <?php
 
 use ApplicationOne\Service;
-use ApplicationOne\Service\Database\Connector
+use ApplicationOne\Service\Database\Connector;
 
 Service\functionService();
 Connector::functionStuff();
