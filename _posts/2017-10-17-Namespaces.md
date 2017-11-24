@@ -29,7 +29,7 @@ namespace ApplicationOne;
 // code ...
 ```
 
-Takový soubor teď celý patří do namespacu pojemnovaného `ApplicationOne`. V rámci souboru je není možné zanořovat, lze ale mít více namespaces v jednou souboru, jako třeba:
+Takový soubor teď celý patří do namespacu pojemnovaného `ApplicationOne`. V rámci souboru je nyní možné zanořovat, lze ale mít více namespaces v jednom souboru, jako třeba:
 
 ```php
 <?php
